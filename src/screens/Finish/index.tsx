@@ -1,5 +1,6 @@
 import { Text, View } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { Stars } from '../../components/Starts';
 
 import { Button } from '../../components/Button';
 
@@ -10,6 +11,7 @@ interface Params {
   points: string;
 }
 
+
 export function Finish() {
   const route = useRoute();
   const { points, total } = route.params as Params;
@@ -18,9 +20,20 @@ export function Finish() {
 
   return (
     <View style={styles.container}>
+          {
+              Number(points) === 3 ? 
+                    <Stars />
+              : 
+              <Text style={styles.title}> Ah, você pode fazer melhor </Text>
+            }
       <View style={styles.message}>
         <Text style={styles.title}>
-          Parabéns!
+            {
+              Number(points) === 3 ? 
+              <Text> Parábens</Text>
+              : 
+              <Text> Tente outra vez </Text>
+            }
         </Text>
 
         <Text style={styles.subtitle}>
